@@ -23,4 +23,5 @@ left_lst.each do |left|
   similarity_score += left * occurrences[left]
 end
 
+# should be 23529853
 puts "#{similarity_score}"
