@@ -7,6 +7,10 @@ def level_difference_too_high(level, prev_level)
   (prev_level - level).abs < 1 || (prev_level - level).abs > 3
 end
 
+def levels_not_monotonic(increasing, level, prev_level)
+  (increasing && prev_level > level) || (!increasing && prev_level < level)
+end
+
 def is_safe_report(levels)
   if levels.length < 2
     return true
@@ -16,7 +20,7 @@ def is_safe_report(levels)
   increasing = prev_level < levels[1]
 
   levels[1..-1].each do |level|
-    if level_difference_too_high(level, prev_level) || (increasing && prev_level > level) || (!increasing && prev_level < level)
+    if level_difference_too_high(level, prev_level) || levels_not_monotonic(increasing, level, prev_level)
       return false
     end
     prev_level = level
