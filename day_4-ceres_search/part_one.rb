@@ -7,6 +7,17 @@
 @expected = @grammar["init"]
 @xmas = 0
 
+module Direction
+  RIGHT = [0, 1]
+  LEFT = [0, -1]
+  UP = [-1, 0]
+  DOWN = [1, 0]
+  DIAGONAL_UP_RIGHT = [-1, 1]
+  DIAGONAL_UP_LEFT = [-1, -1]
+  DIAGONAL_DOWN_RIGHT = [1, 1]
+  DIAGONAL_DOWN_LEFT = [1, -1]
+end
+
 def valid_line_index(line_idx)
   line_idx >= 0 && line_idx < @lines_count
 end
@@ -19,11 +30,11 @@ def is_expected_char(line_idx, char_idx)
   @lines[line_idx][char_idx] == @expected
 end
 
-def scan_single_direction(line_idx, char_idx, line_incr, char_incr)
+def scan_single_direction(line_idx, char_idx, direction)
   while valid_line_index(line_idx) && valid_char_index(char_idx) && is_expected_char(line_idx, char_idx)
     @expected = @grammar[@expected]
-    char_idx += char_incr
-    line_idx += line_incr
+    char_idx += direction[0]
+    line_idx += direction[1]
   end
 
   if @expected == "end"
@@ -34,14 +45,14 @@ def scan_single_direction(line_idx, char_idx, line_incr, char_incr)
 end
 
 def scan_directions(line_idx, char_idx)
-  scan_single_direction(line_idx, char_idx, 0, 1) # right
-  scan_single_direction(line_idx, char_idx, 0, -1) # left
-  scan_single_direction(line_idx, char_idx, -1, 0) # up
-  scan_single_direction(line_idx, char_idx, 1, 0) # down
-  scan_single_direction(line_idx, char_idx, -1, 1) # diagonal up right
-  scan_single_direction(line_idx, char_idx, -1, -1) # diagonal up left
-  scan_single_direction(line_idx, char_idx, 1, 1) # diagonal down right
-  scan_single_direction(line_idx, char_idx, 1, -1) # diagonal down left
+  scan_single_direction(line_idx, char_idx,Direction::RIGHT)
+  scan_single_direction(line_idx, char_idx, Direction::LEFT)
+  scan_single_direction(line_idx, char_idx, Direction::UP)
+  scan_single_direction(line_idx, char_idx, Direction::DOWN)
+  scan_single_direction(line_idx, char_idx, Direction::DIAGONAL_UP_RIGHT)
+  scan_single_direction(line_idx, char_idx, Direction::DIAGONAL_UP_LEFT)
+  scan_single_direction(line_idx, char_idx, Direction::DIAGONAL_DOWN_RIGHT)
+  scan_single_direction(line_idx, char_idx, Direction::DIAGONAL_DOWN_LEFT)
 end
 
 @lines.each_with_index do |line, line_idx|
