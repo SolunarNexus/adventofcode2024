@@ -30,7 +30,7 @@ end
 def is_correct_update(pages, ordering_rules)
   pages.each_with_index do |page, index|
     pages[index + 1..-1].each do |next_page|
-      if !ordering_rules.fetch(page, []).include?(next_page)
+      unless ordering_rules.fetch(page, []).include?(next_page)
         return false
       end
     end
