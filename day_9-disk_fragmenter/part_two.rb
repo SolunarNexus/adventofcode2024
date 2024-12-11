@@ -80,16 +80,19 @@ def move_file_block_front(disk_map)
   inspect_all_file_blocks(disk_map, right)
 end
 
-move_file_block_front(disk_map)
+def compute_checksum(disk_map)
+  checksum = 0
 
-disk_map = disk_map.flatten
-checksum = 0
-
-disk_map.each_with_index do |block, index|
-  unless block.nil?
-    checksum += index * block
+  disk_map.each_with_index do |block, index|
+    unless block.nil?
+      checksum += index * block
+    end
   end
+  checksum
 end
+
+move_file_block_front(disk_map)
+checksum = compute_checksum(disk_map.flatten)
 
 # should output 6326952672104
 puts checksum
