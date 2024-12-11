@@ -44,10 +44,7 @@ def not_gradual(current, prev)
 end
 
 def expand_trail_from(x, y, map, visited, prev, score)
-  if is_out_of_map(map, x, y)
-    return
-  end
-  if visited[y][x]
+  if is_out_of_map(map, x, y) || visited[y][x]
     return
   end
 
