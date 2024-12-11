@@ -9,7 +9,18 @@ def load_input(filename)
   topographic_map
 end
 
-topographic_map = load_input('test_input')
+def locate_trailheads(map)
+  trailheads = []
+
+  map.each_with_index do |line, line_idx|
+    line.each_with_index do |position, position_idx|
+      if position == 0
+        trailheads.append [line_idx, position_idx]
+      end
+    end
+  end
+  trailheads
+end
 
 def pretty_print_map(topographic_map)
   topographic_map.each do |line|
@@ -17,4 +28,8 @@ def pretty_print_map(topographic_map)
   end
 end
 
+topographic_map = load_input('test_input')
+trailheads_coords = locate_trailheads(topographic_map)
+
 pretty_print_map(topographic_map)
+puts "#{trailheads_coords}"
