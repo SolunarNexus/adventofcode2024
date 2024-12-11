@@ -35,6 +35,14 @@ def is_out_of_map(map, x, y)
   x < 0 || x >= map[0].length || y < 0 || y >= map.length
 end
 
+def is_downhill(current, prev)
+  prev > current
+end
+
+def not_gradual(current, prev)
+  current - prev != 1
+end
+
 def expand_trail_from(x, y, map, visited, prev, score)
   if is_out_of_map(map, x, y)
     return
@@ -45,7 +53,7 @@ def expand_trail_from(x, y, map, visited, prev, score)
 
   current = map[y][x]
 
-  if prev > current || current - prev != 1
+  if is_downhill(current, prev) || not_gradual(current, prev)
     return
   end
   if map[y][x] == HIGHEST
