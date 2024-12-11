@@ -18,8 +18,6 @@ def load_input(filename)
   disk_map
 end
 
-disk_map = load_input('input')
-
 def find_free_block(disk_map, left = 0)
   while !disk_map[left][0].nil? && left < disk_map.length
     left += 1
@@ -91,6 +89,7 @@ def compute_checksum(disk_map)
   checksum
 end
 
+disk_map = load_input('input')
 move_file_block_front(disk_map)
 checksum = compute_checksum(disk_map.flatten)
 
