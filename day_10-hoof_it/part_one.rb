@@ -76,8 +76,8 @@ topographic_map = load_input('input')
 trailheads_coords = locate_trailheads(topographic_map)
 trail_scores = explore_trails(trailheads_coords, topographic_map)
 
-pretty_print_map(topographic_map)
-puts "#{trail_scores}"
+# pretty_print_map(topographic_map)
+# puts "#{trail_scores}"
 
 # should output 789
 puts trail_scores.sum
