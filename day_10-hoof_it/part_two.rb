@@ -43,8 +43,8 @@ def not_gradual(current, prev)
   current - prev != 1
 end
 
-def expand_trail_from(x, y, map, visited, prev)
-  if is_out_of_map(map, x, y) || visited[y][x]
+def expand_trail_from(x, y, map, prev)
+  if is_out_of_map(map, x, y)
     return 0
   end
 
@@ -57,19 +57,17 @@ def expand_trail_from(x, y, map, visited, prev)
     return 1
   end
 
-  # visited[y][x] = true
-
-  expand_trail_from(x + 1, y, map, visited, current) +
-  expand_trail_from(x, y + 1, map, visited, current) +
-  expand_trail_from(x - 1, y, map, visited, current) +
-  expand_trail_from(x, y - 1, map, visited, current)
+  expand_trail_from(x + 1, y, map, current) +
+  expand_trail_from(x, y + 1, map, current) +
+  expand_trail_from(x - 1, y, map, current) +
+  expand_trail_from(x, y - 1, map, current)
 end
 
 def explore_trails(trailheads, map)
   ratings = Array.new
 
   trailheads.each do |head|
-    ratings.append expand_trail_from(head[1], head[0], map, Array.new(map.length) { Array.new(map[0].length) { false } }, -1)
+    ratings.append expand_trail_from(head[1], head[0], map, -1)
   end
   ratings
 end
