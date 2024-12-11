@@ -27,12 +27,22 @@ def find_free_block(disk_map, left = 0)
   left
 end
 
+def find_file_block(disk_map, left, right)
+  if left >= right
+    right -= 1
+  end
+
+  while right >= 0 && disk_map[right][0].nil?
+    right -= 1
+  end
+  right
+end
+
 def move_file_block_front(disk_map)
   right = disk_map.length - 1
 
   while right > 0
     left = find_free_block(disk_map)
-
     file_size = disk_map[right].length
 
     while left < right # disk_map.length
@@ -50,16 +60,10 @@ def move_file_block_front(disk_map)
         break
       end
 
-      left = find_free_block(disk_map, left+1)
+      left = find_free_block(disk_map, left + 1)
     end
 
-    if left >= right
-      right -= 1
-    end
-
-    while right >= 0 && disk_map[right][0].nil?
-      right -= 1
-    end
+    right = find_file_block(disk_map, left, right)
   end
 end
 
