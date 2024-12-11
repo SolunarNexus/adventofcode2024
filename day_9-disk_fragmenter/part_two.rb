@@ -1,19 +1,24 @@
 #!/usr/bin/ruby
 
-disk_map = []
-id = 0
+def load_input(filename)
+  disk_map = []
+  id = 0
 
-File.read('input', chomp: true).each_char.with_index do |char, index|
-  if char == '0'
-    next
+  File.read(filename, chomp: true).each_char.with_index do |char, index|
+    if char == '0'
+      next
+    end
+    if index % 2 == 0
+      disk_map.append [id] * Integer(char)
+      id += 1
+    else
+      disk_map.append [nil] * Integer(char)
+    end
   end
-  if index % 2 == 0
-    disk_map.append [id] * Integer(char)
-    id += 1
-  else
-    disk_map.append [nil] * Integer(char)
-  end
+  disk_map
 end
+
+disk_map = load_input('input')
 
 right = disk_map.length - 1
 checksum = 0
