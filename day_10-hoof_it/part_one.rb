@@ -31,8 +31,12 @@ def pretty_print_map(topographic_map)
   end
 end
 
+def is_out_of_map(map, x, y)
+  x < 0 || x >= map[0].length || y < 0 || y >= map.length
+end
+
 def expand_trail_from(x, y, map, visited, prev, score)
-  if x < 0 || x >= map[0].length || y < 0 || y >= map.length
+  if is_out_of_map(map, x, y)
     return
   end
   if visited[y][x]
