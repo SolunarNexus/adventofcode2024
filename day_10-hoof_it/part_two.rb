@@ -58,9 +58,9 @@ def expand_trail_from(x, y, map, prev)
   end
 
   expand_trail_from(x + 1, y, map, current) +
-  expand_trail_from(x, y + 1, map, current) +
-  expand_trail_from(x - 1, y, map, current) +
-  expand_trail_from(x, y - 1, map, current)
+    expand_trail_from(x, y + 1, map, current) +
+    expand_trail_from(x - 1, y, map, current) +
+    expand_trail_from(x, y - 1, map, current)
 end
 
 def explore_trails(trailheads, map)
