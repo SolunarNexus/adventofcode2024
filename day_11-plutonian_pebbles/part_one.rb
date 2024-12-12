@@ -32,7 +32,6 @@ def stones_after_n_blinks(stone, blinks)
   @cache[[stone / 10 ** (length / 2), blinks - 1]] + @cache[[stone % 10 ** (length / 2), blinks - 1]]
 end
 
-stones = File.read('input', chomp: true).split.map { |stone| stone.to_i }
-
-# should output 232454623677743
-puts stones.map { |stone| stones_after_n_blinks(stone, 75) }.sum
+# stones = load_input('input')
+# should output 194482
+# puts stones.map { |stone| stones_after_n_blinks(stone, 25) }.sum
