@@ -2,35 +2,35 @@
 
 @cache = Hash.new
 
-def count(x, d = 75)
-  if @cache.has_key? [x,d]
-    return @cache[[x,d]]
+def count(x, blinks = 75)
+  if @cache.has_key? [x,blinks]
+    return @cache[[x,blinks]]
   end
 
-  if d == 0
+  if blinks == 0
     return 1
   end
 
   if x == 0
-    result = count(1, d - 1)
-    @cache[[1, d-1]] = result
+    result = count(1, blinks - 1)
+    @cache[[1, blinks-1]] = result
     return result
   end
 
   length = Math.log10(x).to_i + 1
 
   if length % 2 == 1
-    result = count(x * 2024, d - 1)
-    @cache[[x*2024,d-1]] = result
+    result = count(x * 2024, blinks - 1)
+    @cache[[x*2024,blinks-1]] = result
     return result
   end
 
-  result1 = count(x / 10 ** (length / 2), d - 1)
-  result2 = count(x % 10 ** (length / 2), d - 1)
+  result1 = count(x / 10 ** (length / 2), blinks - 1)
+  result2 = count(x % 10 ** (length / 2), blinks - 1)
 
-  @cache[[x / 10 ** (length / 2),d-1]] = result1
-  @cache[[x % 10 ** (length / 2), d-1]] = result2
-  @cache[[x,d]] = result1 + result2
+  @cache[[x / 10 ** (length / 2),blinks-1]] = result1
+  @cache[[x % 10 ** (length / 2), blinks-1]] = result2
+  @cache[[x,blinks]] = result1 + result2
 
   result1+result2
 end
