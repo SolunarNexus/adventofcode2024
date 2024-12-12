@@ -2,7 +2,7 @@
 
 @cache = Hash.new
 
-def stones_after_n_blinks(stone, blinks = 75)
+def stones_after_n_blinks(stone, blinks)
   if @cache.has_key? [stone, blinks]
     return @cache[[stone, blinks]]
   end
@@ -29,5 +29,6 @@ def stones_after_n_blinks(stone, blinks = 75)
 end
 
 stones = File.read('input', chomp: true).split.map { |stone| stone.to_i }
+
 # should output 232454623677743
-puts stones.map { |stone| stones_after_n_blinks(stone) }.sum
+puts stones.map { |stone| stones_after_n_blinks(stone, 75) }.sum
