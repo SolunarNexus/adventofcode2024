@@ -2,6 +2,10 @@
 
 @cache = Hash.new
 
+def load_input(filename)
+  File.read('input', chomp: true).split.map { |stone| stone.to_i }
+end
+
 def stones_after_n_blinks(stone, blinks)
   if @cache.has_key? [stone, blinks]
     return @cache[[stone, blinks]]
