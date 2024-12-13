@@ -75,7 +75,5 @@ garden_regions = Hash.new
 compute_regions_properties(garden, garden_regions)
 prices = compute_price_per_region(garden_regions)
 
-puts "#{garden_regions}"
-puts "#{prices}"
 # should output 1375574
 puts "Total price: #{prices.values.sum}"
