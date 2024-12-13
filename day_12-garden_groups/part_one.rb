@@ -76,4 +76,4 @@ compute_regions_properties(garden, garden_regions)
 prices = compute_price_per_region(garden_regions)
 
 # should output 1375574
-puts "Total price: #{prices.values.sum}"
+# puts "Total price: #{prices.values.sum}"
