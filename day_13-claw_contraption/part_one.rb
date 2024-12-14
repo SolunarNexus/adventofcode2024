@@ -26,6 +26,6 @@ end
 
 input = File.read('input', chomp: true)
 machines = get_claw_machines_specifications(input)
-p1 = compute_min_tokens_needed(machines)
+tokens_total = compute_min_tokens_needed(machines)
 # should output 29201
-puts p1
+puts tokens_total
