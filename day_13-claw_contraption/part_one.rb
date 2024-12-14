@@ -30,9 +30,9 @@ def compute_min_tokens_needed(machines)
   total.round
 end
 
-input = File.read('input', chomp: true)
-machines = get_claw_machines_specifications(input)
-tokens_total = compute_min_tokens_needed(machines)
+# input = File.read('input', chomp: true)
+# machines = get_claw_machines_specifications(input)
+# tokens_total = compute_min_tokens_needed(machines)
 
 # should output 29201
-puts tokens_total
+# puts tokens_total
