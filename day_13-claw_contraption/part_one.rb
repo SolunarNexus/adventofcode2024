@@ -23,7 +23,6 @@ end
 
 def compute_min_tokens_needed(machines)
   total = 0
-  tolerance = 0.0001
 
   machines.each do |ax, ay, bx, by, x, y|
     total += min_token_amount(ax, ay, bx, by, x, y)
