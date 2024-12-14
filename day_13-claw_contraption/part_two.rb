@@ -4,12 +4,11 @@ require './part_one.rb'
 
 def compute_min_tokens_needed(machines, offset = 0)
   total = 0
-  tolerance = 0.0001
 
   machines.each do |ax, ay, bx, by, x, y|
     x += offset
     y += offset
-    total += min_token_amount(ax, ay, bx, by, tolerance, x, y)
+    total += min_token_amount(ax, ay, bx, by, x, y)
   end
   total.round
 end

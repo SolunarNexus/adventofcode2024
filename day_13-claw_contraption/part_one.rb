@@ -10,7 +10,8 @@ def get_claw_machines_specifications(input)
   specifications
 end
 
-def min_token_amount(ax, ay, bx, by, tolerance, x, y)
+def min_token_amount(ax, ay, bx, by, x, y)
+  tolerance = 0.0001
   a = (bx * y - by * x) / (bx * ay - by * ax).to_f
   b = (x - ax * a) / bx.to_f
 
@@ -25,7 +26,7 @@ def compute_min_tokens_needed(machines)
   tolerance = 0.0001
 
   machines.each do |ax, ay, bx, by, x, y|
-    total += min_token_amount(ax, ay, bx, by, tolerance, x, y)
+    total += min_token_amount(ax, ay, bx, by, x, y)
   end
   total.round
 end
@@ -33,6 +34,6 @@ end
 # input = File.read('input', chomp: true)
 # machines = get_claw_machines_specifications(input)
 # tokens_total = compute_min_tokens_needed(machines)
-
-# should output 29201
+#
+# # should output 29201
 # puts tokens_total
