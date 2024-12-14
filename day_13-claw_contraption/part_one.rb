@@ -10,16 +10,22 @@ def get_claw_machines_specifications(input)
   specifications
 end
 
+def min_token_amount(ax, ay, bx, by, tolerance, x, y)
+  a = (bx * y - by * x) / (bx * ay - by * ax).to_f
+  b = (x - ax * a) / bx.to_f
+
+  if (a - a.round).abs < tolerance and (b - b.round).abs < tolerance
+    return 3 * a + b
+  end
+  0
+end
+
 def compute_min_tokens_needed(machines)
   total = 0
   tolerance = 0.0001
 
   machines.each do |ax, ay, bx, by, x, y|
-    a = (bx * y - by * x) / (bx * ay - by * ax).to_f
-    b = (x - ax * a) / bx.to_f
-    if (a - a.round).abs < tolerance and (b - b.round).abs < tolerance
-      total += 3 * a + b
-    end
+    total += min_token_amount(ax, ay, bx, by, tolerance, x, y)
   end
   total.round
 end
