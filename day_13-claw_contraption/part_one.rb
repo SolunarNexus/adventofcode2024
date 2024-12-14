@@ -17,6 +17,7 @@ def compute_min_tokens_needed(puzzle_input)
   total.round
 end
 
-p1 = compute_min_tokens_needed(File.read('input', chomp: true))
+input = File.read('input', chomp: true)
+p1 = compute_min_tokens_needed(input)
 # should output 29201
 puts p1
