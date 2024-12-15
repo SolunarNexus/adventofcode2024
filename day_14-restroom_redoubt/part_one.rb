@@ -9,6 +9,22 @@ class Robot
     @velocity = [dx, dy]
   end
 
+  def get_start_pos_x
+    @start_position[0]
+  end
+
+  def get_start_pos_y
+    @start_position[1]
+  end
+
+  def get_velocity_dx
+    @velocity[0]
+  end
+
+  def get_velocity_dy
+    @velocity[1]
+  end
+
   def to_s
     "p=#{@start_position[0]},#{@start_position[1]} v=#{@velocity[0]},#{@velocity[1]}"
   end
