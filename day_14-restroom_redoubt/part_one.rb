@@ -56,6 +56,33 @@ def robot_amount_on_each_tile(robots, space_width, space_length, seconds = 100)
   space
 end
 
+def get_amount_of_robots_in_quadrants(tiles, width, length)
+  quadrants = Array.new(4, 0)
+  vertical_mid_axis_pos = width / 2 - 1
+  horizontal_mid_axis = length / 2 - 1
+  horizontal_jump = width % 2 == 1 ? 2 : 1
+  vertical_jump = length % 2 == 1 ? 2 : 1
+
+  quadrant1 = (0..horizontal_mid_axis).collect { |i| tiles[i][0..vertical_mid_axis_pos] }
+  quadrant2 = (0..horizontal_mid_axis).collect { |i| tiles[i][vertical_mid_axis_pos + horizontal_jump ..] }
+  quadrant3 = (horizontal_mid_axis + vertical_jump..length-1).collect { |i| tiles[i][0..vertical_mid_axis_pos] }
+  quadrant4 = (horizontal_mid_axis + vertical_jump..length-1).collect { |i| tiles[i][vertical_mid_axis_pos + vertical_jump..] }
+  quadrants[0] = quadrant1.map { |row| row.sum }.sum
+  quadrants[1] = quadrant2.map { |row| row.sum }.sum
+  quadrants[2] = quadrant3.map { |row| row.sum }.sum
+  quadrants[3] = quadrant4.map { |row| row.sum }.sum
+  quadrants
+end
+
+def get_safety_factor(quadrants)
+  quadrants.inject(:*)
+end
+
 robots = get_robots_from_input('test_input')
 tiles_w_robot_count = robot_amount_on_each_tile(robots, 11, 7, 100)
+robots_in_quadrants = get_amount_of_robots_in_quadrants(tiles_w_robot_count, 11, 7)
+safety_factor = get_safety_factor(robots_in_quadrants)
+
 puts "#{tiles_w_robot_count}"
+puts "#{robots_in_quadrants}"
+puts safety_factor
