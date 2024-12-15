@@ -112,7 +112,7 @@ end
 map, instructions, robot = load_input('input')
 
 puts map
-puts "#{instructions}"
+puts "\n\n"
 process_instructions(robot, instructions, map)
 gps = get_gps_coordinates(map)
 puts map
