@@ -96,9 +96,26 @@ def process_instructions(from_position, instructions, map)
   end
 end
 
-map, instructions, robot = load_input('test_input2')
+def get_gps_coordinates(map)
+  gps_coordinates = []
+
+  map.each_with_index do |line, y|
+    line.each_char.with_index do |tile, x|
+      if tile == Warehouse::BOX
+        gps_coordinates.append(100 * y + x)
+      end
+    end
+  end
+  gps_coordinates
+end
+
+map, instructions, robot = load_input('input')
 
 puts map
 puts "#{instructions}"
 process_instructions(robot, instructions, map)
+gps = get_gps_coordinates(map)
 puts map
+puts "#{gps}"
+# should output 1514353
+puts gps.sum
