@@ -78,11 +78,15 @@ def get_safety_factor(quadrants)
   quadrants.inject(:*)
 end
 
-robots = get_robots_from_input('test_input')
-tiles_w_robot_count = robot_amount_on_each_tile(robots, 11, 7, 100)
-robots_in_quadrants = get_amount_of_robots_in_quadrants(tiles_w_robot_count, 11, 7)
+SPACE_WIDTH = 101
+SPACE_LENGTH = 103
+robots = get_robots_from_input('input')
+tiles_w_robot_count = robot_amount_on_each_tile(robots, SPACE_WIDTH, SPACE_LENGTH)
+robots_in_quadrants = get_amount_of_robots_in_quadrants(tiles_w_robot_count, SPACE_WIDTH, SPACE_LENGTH)
 safety_factor = get_safety_factor(robots_in_quadrants)
 
 puts "#{tiles_w_robot_count}"
 puts "#{robots_in_quadrants}"
+
+# should output 225648864
 puts safety_factor
