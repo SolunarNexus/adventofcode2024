@@ -35,7 +35,7 @@ def get_robots_from_input(filename)
   robots = Array.new
 
   File.readlines(filename).each do |line|
-    x, y, dx, dy = line.scan(pattern)
+    x, y, dx, dy = line.scan(pattern).map { |arg| arg.to_i }
     robots.append Robot.new(x, y, dx, dy)
   end
   robots
