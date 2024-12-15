@@ -46,5 +46,16 @@ def robot_position_after_n_seconds(robot, space_width, space_length, seconds = 1
    (robot.get_start_pos_y + robot.get_velocity_dy * seconds) % space_length]
 end
 
+def robot_amount_on_each_tile(robots, space_width, space_length, seconds = 100)
+  space = Array.new(space_length) { Array.new(space_width, 0) }
+
+  robots.each do |robot|
+    end_x, end_y = robot_position_after_n_seconds(robot, space_width, space_length, seconds)
+    space[end_y][end_x] += 1
+  end
+  space
+end
+
 robots = get_robots_from_input('test_input')
-puts robots
+tiles_w_robot_count = robot_amount_on_each_tile(robots, 11, 7, 100)
+puts "#{tiles_w_robot_count}"
