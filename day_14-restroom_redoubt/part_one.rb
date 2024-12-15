@@ -64,9 +64,9 @@ def get_amount_of_robots_in_quadrants(tiles, width = 101, length = 103)
   vertical_jump = length % 2 == 1 ? 2 : 1
 
   quadrant1 = (0..horizontal_mid_axis).collect { |i| tiles[i][0..vertical_mid_axis_pos] }
-  quadrant2 = (0..horizontal_mid_axis).collect { |i| tiles[i][vertical_mid_axis_pos + horizontal_jump ..] }
-  quadrant3 = (horizontal_mid_axis + vertical_jump..length-1).collect { |i| tiles[i][0..vertical_mid_axis_pos] }
-  quadrant4 = (horizontal_mid_axis + vertical_jump..length-1).collect { |i| tiles[i][vertical_mid_axis_pos + vertical_jump..] }
+  quadrant2 = (0..horizontal_mid_axis).collect { |i| tiles[i][vertical_mid_axis_pos + horizontal_jump..] }
+  quadrant3 = (horizontal_mid_axis + vertical_jump..length - 1).collect { |i| tiles[i][0..vertical_mid_axis_pos] }
+  quadrant4 = (horizontal_mid_axis + vertical_jump..length - 1).collect { |i| tiles[i][vertical_mid_axis_pos + vertical_jump..] }
   quadrants[0] = quadrant1.map { |row| row.sum }.sum
   quadrants[1] = quadrant2.map { |row| row.sum }.sum
   quadrants[2] = quadrant3.map { |row| row.sum }.sum
