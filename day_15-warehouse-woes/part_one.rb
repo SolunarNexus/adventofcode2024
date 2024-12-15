@@ -109,13 +109,13 @@ def get_gps_coordinates(map)
   gps_coordinates
 end
 
-map, instructions, robot = load_input('input')
-
-puts map
-puts "\n\n"
-process_instructions(robot, instructions, map)
-gps = get_gps_coordinates(map)
-puts map
-puts "#{gps}"
-# should output 1514353
-puts gps.sum
+# map, instructions, robot = load_input('input')
+#
+# puts map
+# puts "\n\n"
+# process_instructions(robot, instructions, map)
+# gps = get_gps_coordinates(map)
+# puts map
+# puts "#{gps}"
+# # should output 1514353
+# puts gps.sum
