@@ -46,7 +46,7 @@ def robot_position_after_n_seconds(robot, space_width, space_length, seconds = 1
    (robot.get_start_pos_y + robot.get_velocity_dy * seconds) % space_length]
 end
 
-def robot_amount_on_each_tile(robots, space_width, space_length, seconds = 100)
+def robot_amount_on_each_tile(robots, space_width = 101, space_length = 103, seconds = 100)
   space = Array.new(space_length) { Array.new(space_width, 0) }
 
   robots.each do |robot|
@@ -56,7 +56,7 @@ def robot_amount_on_each_tile(robots, space_width, space_length, seconds = 100)
   space
 end
 
-def get_amount_of_robots_in_quadrants(tiles, width, length)
+def get_amount_of_robots_in_quadrants(tiles, width = 101, length = 103)
   quadrants = Array.new(4, 0)
   vertical_mid_axis_pos = width / 2 - 1
   horizontal_mid_axis = length / 2 - 1
@@ -78,11 +78,9 @@ def get_safety_factor(quadrants)
   quadrants.inject(:*)
 end
 
-SPACE_WIDTH = 101
-SPACE_LENGTH = 103
 robots = get_robots_from_input('input')
-tiles_w_robot_count = robot_amount_on_each_tile(robots, SPACE_WIDTH, SPACE_LENGTH)
-robots_in_quadrants = get_amount_of_robots_in_quadrants(tiles_w_robot_count, SPACE_WIDTH, SPACE_LENGTH)
+tiles_w_robot_count = robot_amount_on_each_tile(robots)
+robots_in_quadrants = get_amount_of_robots_in_quadrants(tiles_w_robot_count)
 safety_factor = get_safety_factor(robots_in_quadrants)
 
 puts "#{tiles_w_robot_count}"
