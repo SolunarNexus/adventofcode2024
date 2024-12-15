@@ -41,5 +41,10 @@ def get_robots_from_input(filename)
   robots
 end
 
+def robot_position_after_n_seconds(robot, space_width, space_length, seconds = 100)
+  [(robot.get_start_pos_x + robot.get_velocity_dx * seconds) % space_width,
+   (robot.get_start_pos_y + robot.get_velocity_dy * seconds) % space_length]
+end
+
 robots = get_robots_from_input('test_input')
 puts robots
