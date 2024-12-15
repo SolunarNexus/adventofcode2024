@@ -83,8 +83,5 @@ tiles_w_robot_count = robot_amount_on_each_tile(robots)
 robots_in_quadrants = get_amount_of_robots_in_quadrants(tiles_w_robot_count)
 safety_factor = get_safety_factor(robots_in_quadrants)
 
-puts "#{tiles_w_robot_count}"
-puts "#{robots_in_quadrants}"
-
 # should output 225648864
 puts safety_factor
