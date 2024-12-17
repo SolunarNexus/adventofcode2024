@@ -133,9 +133,9 @@ def load_input(filename)
   arguments
 end
 
-args = load_input('input')
-computer = Computer.new(*args)
-computer.run
-
-# should output 7,4,2,5,1,4,6,0,4
-puts "#{computer.output.join(',')}"
+# args = load_input('input')
+# computer = Computer.new(*args)
+# computer.run
+#
+# # should output 7,4,2,5,1,4,6,0,4
+# puts "#{computer.output.join(',')}"
