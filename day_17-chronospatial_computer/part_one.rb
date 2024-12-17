@@ -19,7 +19,7 @@ class Computer
     @instruction_pointer = 0
   end
 
-  def get_combo_operand(operand)
+  def get_combo_value_from(operand)
     case operand
     when 0..3
       return operand
@@ -32,6 +32,11 @@ class Computer
     else
       raise "Invalid operand #{operand} - allowed values are in range 0..7"
     end
+  end
+
+  def adv(operand)
+    denominator = 2 ** get_combo_value_from(operand)
+    @registers[Register::A] /= denominator
   end
 
   def to_s
