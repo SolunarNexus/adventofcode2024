@@ -6,16 +6,6 @@ module Register
   C = 'C'
 end
 
-module ComboOperand
-  ZERO = 0
-  ONE = 1
-  TWO = 2
-  THREE = 3
-  FOUR = 'A'
-  FIVE = 'B'
-  SIX = 'C'
-end
-
 class Computer
   attr_reader :registers
   attr_reader :program, :instruction_pointer
