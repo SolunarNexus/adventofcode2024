@@ -23,9 +23,9 @@ class Computer
 
   def initialize(reg_a, reg_b, reg_c, program)
     @registers = Hash.new
-    @registers[Register::A] = reg_a
-    @registers[Register::B] = reg_b
-    @registers[Register::C] = reg_c
+    @registers[Register::A] = reg_a.to_i
+    @registers[Register::B] = reg_b.to_i
+    @registers[Register::C] = reg_c.to_i
     @program = program.chars.filter { |c| c.match(/\d/) }.map { |c| c.to_i }
     @instruction_pointer = 0
     @output = Array.new
