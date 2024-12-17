@@ -4,7 +4,8 @@ class Computer
   attr_reader :reg_A, :reg_B, :reg_C, :program
 
   def initialize(reg_a, reg_b, reg_c, program)
-    @reg_A, @reg_B, @reg_C, @program = reg_a, reg_b, reg_c, program
+    @reg_A, @reg_B, @reg_C = reg_a, reg_b, reg_c
+    @program = program.chars.map {|c| c.to_i}
   end
 
   def to_s
