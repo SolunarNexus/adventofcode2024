@@ -48,6 +48,12 @@ class Computer
     @registers[Register::B] = value % 8
   end
 
+  def jnz(operand)
+    unless @registers[Register::A] == 0
+      @instruction_pointer = operand
+    end
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}"
   end
