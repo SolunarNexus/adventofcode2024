@@ -31,7 +31,7 @@ class Computer
     when 6
       return @registers[Register::C]
     else
-      raise "Invalid operand #{operand} - allowed values are in range 0..7"
+      raise "Invalid operand #{operand} - allowed values are in range 0..6"
     end
   end
 
