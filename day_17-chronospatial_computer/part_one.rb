@@ -15,7 +15,7 @@ class Computer
     @registers[Register::A] = reg_a
     @registers[Register::B] = reg_b
     @registers[Register::C] = reg_c
-    @program = program.chars.map { |c| c.to_i }
+    @program = program.chars.filter { |c| c.match(/\d/) }.map { |c| c.to_i }
     @instruction_pointer = 0
   end
 
