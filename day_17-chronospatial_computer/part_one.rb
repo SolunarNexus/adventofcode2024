@@ -1,6 +1,12 @@
 #!/usr/bin/ruby
 
-module ComboOperands
+module Register
+  A = 'A'
+  B = 'B'
+  C = 'C'
+end
+
+module ComboOperand
   ZERO = 0
   ONE = 1
   TWO = 2
@@ -11,16 +17,20 @@ module ComboOperands
 end
 
 class Computer
-  attr_reader :reg_A, :reg_B, :reg_C, :program, :instruction_pointer
+  attr_reader :registers
+  attr_reader :program, :instruction_pointer
 
   def initialize(reg_a, reg_b, reg_c, program)
-    @reg_A, @reg_B, @reg_C = reg_a, reg_b, reg_c
-    @program = program.chars.map {|c| c.to_i}
+    @registers = Hash.new
+    @registers[Register::A] = reg_a
+    @registers[Register::B] = reg_b
+    @registers[Register::C] = reg_c
+    @program = program.chars.map { |c| c.to_i }
     @instruction_pointer = 0
   end
 
   def to_s
-    "A: #{reg_A}\nB: #{reg_B}\nC: #{reg_C}\nProgram: #{program}"
+    "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}"
   end
 end
 
@@ -33,7 +43,7 @@ def load_input(filename)
   arguments
 end
 
-
 args = load_input('input')
 computer = Computer.new(*args)
 
+puts computer
