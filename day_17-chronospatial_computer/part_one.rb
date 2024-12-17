@@ -85,6 +85,40 @@ class Computer
     @registers[Register::A] / (2 ** get_combo_value_from(operand))
   end
 
+  def run
+    until @program[@instruction_pointer].nil?
+      opcode = @program[@instruction_pointer]
+      operand = @program[@instruction_pointer + 1]
+
+      case opcode
+      when Opcode::ADV
+        adv(operand)
+      when Opcode::BXL
+        bxl(operand)
+      when Opcode::BST
+        bst(operand)
+      when Opcode::JNZ
+        prev_ip = @instruction_pointer
+        jnz(operand)
+
+        if prev_ip != @instruction_pointer
+          next
+        end
+      when Opcode::BXC
+        bxc
+      when Opcode::OUT
+      out(operand)
+      when Opcode::BDV
+        bdv(operand)
+      when Opcode::CDV
+        cdv(operand)
+        else raise "Invalid instruction #{opcode} - valid values are in range 0..7"
+      end
+
+      @instruction_pointer += 2
+    end
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}\nIP: #{@instruction_pointer}\nOutput: #{@output}\n"
   end
