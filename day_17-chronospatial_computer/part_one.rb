@@ -1,11 +1,12 @@
 #!/usr/bin/ruby
 
 class Computer
-  attr_reader :reg_A, :reg_B, :reg_C, :program
+  attr_reader :reg_A, :reg_B, :reg_C, :program, :instruction_pointer
 
   def initialize(reg_a, reg_b, reg_c, program)
     @reg_A, @reg_B, @reg_C = reg_a, reg_b, reg_c
     @program = program.chars.map {|c| c.to_i}
+    @instruction_pointer = 0
   end
 
   def to_s
@@ -24,5 +25,5 @@ end
 
 
 args = load_input('input')
-pc = Computer.new(*args)
-puts pc
+computer = Computer.new(*args)
+
