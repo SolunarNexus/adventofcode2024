@@ -135,5 +135,7 @@ end
 
 args = load_input('input')
 computer = Computer.new(*args)
+computer.run
 
-puts computer
+# should output 7,4,2,5,1,4,6,0,4
+puts "#{computer.output.join(',')}"
