@@ -29,6 +29,21 @@ class Computer
     @instruction_pointer = 0
   end
 
+  def get_combo_operand(operand)
+    case operand
+    when 0..3
+      return operand
+    when 4
+      return @registers[Register::A]
+    when 5
+      return @registers[Register::B]
+    when 6
+      return @registers[Register::C]
+    else
+      raise "Invalid operand #{operand} - allowed values are in range 0..7"
+    end
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}"
   end
