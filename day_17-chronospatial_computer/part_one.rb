@@ -74,7 +74,7 @@ class Computer
   end
 
   def bdv(operand)
-    @registers[Register::B] =  divide(operand)
+    @registers[Register::B] = divide(operand)
   end
 
   def cdv(operand)
@@ -107,12 +107,13 @@ class Computer
       when Opcode::BXC
         bxc
       when Opcode::OUT
-      out(operand)
+        out(operand)
       when Opcode::BDV
         bdv(operand)
       when Opcode::CDV
         cdv(operand)
-        else raise "Invalid instruction #{opcode} - valid values are in range 0..7"
+      else
+        raise "Invalid instruction #{opcode} - valid values are in range 0..7"
       end
 
       @instruction_pointer += 2
