@@ -1,5 +1,15 @@
 #!/usr/bin/ruby
 
+module ComboOperands
+  ZERO = 0
+  ONE = 1
+  TWO = 2
+  THREE = 3
+  FOUR = 'A'
+  FIVE = 'B'
+  SIX = 'C'
+end
+
 class Computer
   attr_reader :reg_A, :reg_B, :reg_C, :program, :instruction_pointer
 
