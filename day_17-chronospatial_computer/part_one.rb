@@ -6,6 +6,17 @@ module Register
   C = 'C'
 end
 
+module Opcode
+  ADV = 0
+  BXL = 1
+  BST = 2
+  JNZ = 3
+  BXC = 4
+  OUT = 5
+  BDV = 6
+  CDV = 7
+end
+
 class Computer
   attr_reader :registers
   attr_reader :program, :instruction_pointer, :output
