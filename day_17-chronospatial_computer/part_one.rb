@@ -12,5 +12,16 @@ class Computer
   end
 end
 
-pc = Computer.new(1, 2, 4, "0,1,0,2")
+def load_input(filename)
+  arguments = []
+  File.readlines(filename, chomp: true).each do |line|
+    arg = line.match(/(\d,?)+/)
+    arguments.append arg[0] unless arg.nil?
+  end
+  arguments
+end
+
+
+args = load_input('input')
+pc = Computer.new(*args)
 puts pc
