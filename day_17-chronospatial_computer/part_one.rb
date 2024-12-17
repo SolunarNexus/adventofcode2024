@@ -43,6 +43,11 @@ class Computer
     @registers[Register::B] ^= operand
   end
 
+  def bst(operand)
+    value = get_combo_value_from(operand)
+    @registers[Register::B] = value % 8
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}"
   end
