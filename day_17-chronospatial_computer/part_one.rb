@@ -55,7 +55,7 @@ class Computer
   end
 
   def to_s
-    "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}"
+    "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}\nIP: #{@instruction_pointer}\n"
   end
 end
 
