@@ -8,7 +8,7 @@ end
 
 class Computer
   attr_reader :registers
-  attr_reader :program, :instruction_pointer
+  attr_reader :program, :instruction_pointer, :output
 
   def initialize(reg_a, reg_b, reg_c, program)
     @registers = Hash.new
@@ -17,6 +17,7 @@ class Computer
     @registers[Register::C] = reg_c
     @program = program.chars.filter { |c| c.match(/\d/) }.map { |c| c.to_i }
     @instruction_pointer = 0
+    @output = Array.new
   end
 
   def get_combo_value_from(operand)
