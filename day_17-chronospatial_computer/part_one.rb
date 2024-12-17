@@ -69,6 +69,12 @@ class Computer
     @registers[Register::B] =  numerator / denominator
   end
 
+  def cdv(operand)
+    numerator = @registers[Register::A]
+    denominator = 2 ** get_combo_value_from(operand)
+    @registers[Register::C] = numerator / denominator
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}\nIP: #{@instruction_pointer}\nOutput: #{@output}\n"
   end
