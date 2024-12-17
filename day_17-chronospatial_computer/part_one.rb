@@ -39,6 +39,10 @@ class Computer
     @registers[Register::A] /= denominator
   end
 
+  def bxl(operand)
+    @registers[Register::B] ^= operand
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}"
   end
