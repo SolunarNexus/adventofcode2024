@@ -36,8 +36,7 @@ class Computer
   end
 
   def adv(operand)
-    denominator = 2 ** get_combo_value_from(operand)
-    @registers[Register::A] /= denominator
+    @registers[Register::A] = divide(operand)
   end
 
   def bxl(operand)
@@ -64,15 +63,15 @@ class Computer
   end
 
   def bdv(operand)
-    numerator = @registers[Register::A]
-    denominator = 2 ** get_combo_value_from(operand)
-    @registers[Register::B] =  numerator / denominator
+    @registers[Register::B] =  divide(operand)
   end
 
   def cdv(operand)
-    numerator = @registers[Register::A]
-    denominator = 2 ** get_combo_value_from(operand)
-    @registers[Register::C] = numerator / denominator
+    @registers[Register::C] = divide(operand)
+  end
+
+  def divide(operand)
+    @registers[Register::A] / (2 ** get_combo_value_from(operand))
   end
 
   def to_s
