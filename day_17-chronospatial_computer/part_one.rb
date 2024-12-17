@@ -59,6 +59,10 @@ class Computer
     @registers[Register::B] ^= @registers[Register::C]
   end
 
+  def out(operand)
+    @output.append(get_combo_value_from(operand) % 8)
+  end
+
   def to_s
     "A: #{@registers[Register::A]}\nB: #{@registers[Register::B]}\nC: #{@registers[Register::C]}\nProgram: #{@program}\nIP: #{@instruction_pointer}\nOutput: #{@output}\n"
   end
