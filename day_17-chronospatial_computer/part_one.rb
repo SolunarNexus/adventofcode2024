@@ -18,8 +18,7 @@ module Opcode
 end
 
 class Computer
-  attr_reader :registers
-  attr_reader :program, :instruction_pointer, :output
+  attr_reader :registers, :program, :instruction_pointer, :output
 
   def initialize(reg_a, reg_b, reg_c, program)
     @registers = Hash.new
