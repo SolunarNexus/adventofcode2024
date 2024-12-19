@@ -1,72 +1,73 @@
 #!/usr/bin/ruby
 
-require 'pqueue'
-require 'set'
+# GRID_SIZE = 6
+GRID_SIZE = 70
 
-test = false
+def parse_input(filename = 'input')
+  list = []
 
-if test
-  SIZE = 7
-  INPUT = 'test_input'
-  WAIT = 12
-else
-  SIZE = 71
-  INPUT = 'corrupted_coords'
-  WAIT = 1024
+  File.readlines(filename, chomp: true).each do |line|
+    break if line.empty?
+
+    x, y = line.split(',').map(&:to_i)
+    list << Complex(x, y)
+  end
+  list
 end
 
-DIRECTIONS = [[1, 0], [0, 1], [-1, 0], [0, -1]]
-
-def in_bounds(y, x) = y >= 0 && y < SIZE && x >= 0 && x < SIZE
-
-def make_map(coords)
-  grid = SIZE.times.map { Array.new(SIZE) }
-  coords.each_with_index { |(x,y),i| grid[y][x] = i+1 }
-  grid
-end
-
-def find_path(grid, start_time=0)
-  start = [0,0]
-  target = [SIZE-1,SIZE-1]
-
-  initial = [start, start_time]
-  queue = PQueue.new([initial]) { |a,b| a[0].sum - a[1] > b[0].sum - b[1] }
-  visited = Set[]
-
-  until queue.empty? do
-    pos,time = queue.pop
-    next unless visited.add? pos
-
-    if pos == target
-      return time - start_time
-    end
-
-    y,x = pos
-    DIRECTIONS.each { |dy,dx|
-      ny, nx = y+dy, x+dx
-      next unless in_bounds(ny,nx)
-
-      next_cell = grid[ny][nx]
-      next_time = time+1
-
-      next if next_cell && next_time >= next_cell
-      queue << [[ny,nx], next_time]
-    }
+def get_neighbors(pos, obstacles)
+  movements = [1 + 0i, -1 + 0i, 0 + 1i, 0 - 1i]
+  movements.each do |d|
+    next_pos = pos + d
+    yield next_pos if !obstacles.include?(next_pos) &&
+      next_pos.real.between?(0, GRID_SIZE) &&
+      next_pos.imag.between?(0, GRID_SIZE)
   end
 end
 
-corrupted_coords = File.readlines(INPUT).map { |line| line.split(',').map(&:to_i) }
+def bfs(start, target, obstacles)
+  queue = Queue.new
+  queue << [start, 0]
+  visited = Set[start]
+  until queue.empty?
+    pos, nsteps = queue.pop
+    return nsteps if pos == target
 
-# Part 1
-map = make_map(corrupted_coords.take(WAIT))
+    get_neighbors(pos, obstacles) do |nb|
+      unless visited.include?(nb)
+        visited << nb
+        queue << [nb, nsteps + 1]
+      end
+    end
+  end
+  nil
+end
+
+# Binary search, the left represent an unblocked state, the right a blocked state
+def search_block(nbytes_start, nbytes_block, start, target, byte_list)
+  return nbytes_block if nbytes_block - nbytes_start <= 1
+
+  half = (nbytes_start + nbytes_block).div(2)
+  obstacles = byte_list.take(half).to_set
+  is_blocked = bfs(start, target, obstacles).nil?
+  if is_blocked
+    search_block(nbytes_start, half, start, target, byte_list)
+  else
+    search_block(half, nbytes_block, start, target, byte_list)
+  end
+end
+
+falling_bytes = parse_input
+
+start = 0 + 0i
+target = Complex(GRID_SIZE, GRID_SIZE)
+
+p1 = bfs(start, target, falling_bytes.take(1024).to_set)
+block_idx = search_block(1024, falling_bytes.size, start, target, falling_bytes) - 1
+blocking_byte = falling_bytes[block_idx]
+p2 = "#{blocking_byte.real},#{blocking_byte.imag}"
+
 # should output 380
-puts find_path(map, WAIT)
-
-
-# Part 2
-byte =  corrupted_coords.drop(WAIT).find.with_index { |(x,y),i|
-  map[y][x] = i+WAIT
-  !find_path(map, i+WAIT+1)
-}.join(",")
+puts "Part1: #{p1}"
 # should output 26,50
-puts byte
+puts "Part2: #{p2}"
