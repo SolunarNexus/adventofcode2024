@@ -35,7 +35,7 @@ def possible_combinations(patterns, designs)
   total
 end
 
-towel_patterns, combinations = load_input 'input'
-total = possible_combinations(towel_patterns, combinations)
-# should output 240
-puts total
+# towel_patterns, combinations = load_input 'input'
+# total = possible_combinations(towel_patterns, combinations)
+# # should output 240
+# puts total
