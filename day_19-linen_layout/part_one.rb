@@ -17,7 +17,13 @@ def is_possible(patterns, combination)
 
   viable_patterns = patterns.filter {|pattern| combination.start_with?(pattern)}
 
-  return viable_patterns.map {|pattern| is_possible(patterns, combination.sub(pattern, ""))}.include?(true)
+  until viable_patterns.empty?
+    pattern = viable_patterns.pop
+
+    if is_possible(patterns, combination.sub(pattern, ""))
+      return true
+    end
+  end
 end
 
 def possible_combinations(patterns, combinations)
@@ -30,7 +36,6 @@ def possible_combinations(patterns, combinations)
 end
 
 towel_patterns, combinations = load_input 'input'
-
 total = possible_combinations(towel_patterns, combinations)
-
+# should output 240
 puts total
