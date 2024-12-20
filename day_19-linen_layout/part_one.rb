@@ -26,11 +26,11 @@ def is_possible(patterns, combination)
   end
 end
 
-def possible_combinations(patterns, combinations)
+def possible_combinations(patterns, designs)
   total = 0
 
-  combinations.each do |combination|
-    total += 1 if is_possible(patterns, combination)
+  designs.each do |design|
+    total += 1 if is_possible(patterns, design)
   end
   total
 end
