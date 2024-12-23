@@ -27,12 +27,12 @@ def compute_nth_secret(number, n=2000)
   number
 end
 
-initial_secrets = load_input("input")
-sum = 0
-
-initial_secrets.each do |secret|
-  sum += compute_nth_secret(secret)
-end
+# initial_secrets = load_input("input")
+# sum = 0
+#
+# initial_secrets.each do |secret|
+#   sum += compute_nth_secret(secret)
+# end
 
 # should output 15006633487
-puts sum
+# puts sum
