@@ -18,9 +18,7 @@ end
 until gates.empty? do
   wire_a, wire_b, operator, out_wire = gates.pop
 
-  unless wires.has_key?(wire_a) && wires.has_key?(wire_b)
-    gates.push([wire_a, wire_b, operator, out_wire])
-  else
+  if wires.has_key?(wire_a) && wires.has_key?(wire_b)
     case operator
     when "AND"
       wires[out_wire] = wires[wire_a] & wires[wire_b]
@@ -31,6 +29,8 @@ until gates.empty? do
     else
       raise("Invalid binary operator")
     end
+  else
+    gates.push([wire_a, wire_b, operator, out_wire])
   end
 end
 
