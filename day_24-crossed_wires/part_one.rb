@@ -34,7 +34,8 @@ until gates.empty? do
   end
 end
 
-binary = wires.entries.filter {|k, _| k.start_with?("z")}.sort_by {|k, _| -k}.map { |_, v| v}.reverse!.join
+binary = wires.filter { |k, _| k.start_with?("z") }.sort_by { |k, _| k }.map { |_, v| v }.reverse!.join
 
 puts "#{binary}"
+# should output 58639252480880
 puts "#{binary.to_i(2)}"
