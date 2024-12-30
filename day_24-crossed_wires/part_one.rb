@@ -27,14 +27,14 @@ until gates.empty? do
     when "XOR"
       wires[out_wire] = wires[wire_a] ^ wires[wire_b]
     else
-      raise("Invalid binary operator")
+      raise("Invalid binary operator!")
     end
   else
     gates.push([wire_a, wire_b, operator, out_wire])
   end
 end
 
-binary = wires.filter { |k, _| k.start_with?("z") }.sort_by { |k, _| k }.map { |_, v| v }.reverse!.join
+binary = wires.filter { |k, _| k.start_with?("z") }.sort.map { |_, v| v }.reverse!.join
 
 puts "#{binary}"
 # should output 58639252480880
