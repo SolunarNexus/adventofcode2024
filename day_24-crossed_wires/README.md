@@ -195,21 +195,3 @@ In this example, two pairs of gates have outputs that are involved in a swap. By
 Of course, your actual system is much more complex than this, and the gates that need their outputs swapped could be **anywhere**, not just attached to a wire starting with `z`. If you were to determine that you need to swap output wires `aaa` with `eee`, `ooo` with `z99`, `bbb` with `ccc`, and `aoc` with `z24`, your answer would be `aaa,aoc,bbb,ccc,eee,ooo,z24,z99`.
 
 Your system of gates and wires has **four** pairs of gates which need their output wires swapped - **eight** wires in total. Determine which four pairs of gates need their outputs swapped so that your system correctly performs addition; **what do you get if you sort the names of the eight wires involved in a swap and then join those names with commas?**
-
-## Part Two
-
-You and The Historians crowd into the office, startling the Chief Historian awake! The Historians all take turns looking confused until one asks where he's been for the last few months.
-
-"I've been right here, working on this high-priority request from Santa! I think the only time I even stepped away was about a month ago when I went to grab a cup of coffee..."
-
-Just then, the Chief notices the time. "Oh no! I'm going to be late! I must have fallen asleep trying to put the finishing touches on this chronicle Santa requested, but now I don't have enough time to go visit the last 50 places on my list and complete the chronicle before Santa leaves! He said he needed it before tonight's sleigh launch."
-
-One of The Historians holds up the list they've been using this whole time to keep track of where they've been searching. Next to each place you all visited, they checked off that place with a star. Other Historians hold up their own notes they took on the journey; as The Historians, how could they resist writing everything down while visiting all those historically significant places?
-
-The Chief's eyes get wide. "With all this, we might just have enough time to finish the chronicle! Santa said he wanted it wrapped up with a bow, so I'll call down to the wrapping department and... hey, could you bring it up to Santa? I'll need to be in my seat to watch the sleigh launch by then."
-
-You nod, and The Historians quickly work to collect their notes into the final set of pages for the chronicle.
-
-Using the notes from the places marked by all **fifty stars**, The Historians finish the chronicle, wrap it, and give it to you so you can bring it to Santa before the big sleigh launch.
-
-Santa is already in the sleigh making the final launch preparations when you arrive. You try to hand him the chronicle, but he doesn't take it. "Ho ho ho," he laughs to himself. "That gift isn't for me - it's for you. That chronicle is a record of all the places you've been and people you've helped over the last decade. Thank you for everything." With that, Santa takes off in his sleigh to deliver the rest of this year's presents.
